@@ -1,4 +1,5 @@
-//IIFE
+//IIFE - Immediately Invoked Function Expression
+//AKA -Self Executing Function
 (function()
 {
 
