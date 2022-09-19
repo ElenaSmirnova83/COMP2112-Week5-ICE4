@@ -7,9 +7,9 @@
      * This function loads data Asynchronously from a URL.
      * It calls thecallback function when the data loading is complete
      * @param {string} method 
-     * @param {*} url 
+     * @param {string} url 
      */
-    function XHRRequest(method, url)
+    function XHRRequest(method: string, url: string, callback:Function):void
     {
         //step 1-Create an empty XHR object
         let XHR = new XMLHttpRequest();
@@ -32,7 +32,11 @@
     {
         console.log("App Started!");
 
-        XHRRequest("GET", "./Data/contacts.json");
+        //XHRRequest("GET", "./Data/contacts.json");
+
+        $.getJSON("./Data/contacts.json", function(DataSource){
+            console.log(DataSource.ContactList[0]);
+        });
     }
     window.addEventListener("load", Start);
 
