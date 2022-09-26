@@ -1,48 +1,56 @@
 "use strict";
-//IIFE - Immediately Invoked Function Expression
-//AKA -Self Executing Function
+//IIFE -- Immediately Invoked Function Expression
+// AKA - Self Executing Function 
 (function()
 {
     /**
      * This function loads data Asynchronously from a URL.
-     * It calls thecallback function when the data loading is complete
-     * @param {string} method 
-     * @param {string} url 
+     * It calls the callback function when the data loading is complete
+     *
+     * @param {string} method
+     * @param {string} url
+     * @param {function} callback
      */
-    function XHRRequest(method: string, url: string, callback:Function):void
+    function LoadData(method: string, url: string, callback:Function):void
     {
-        //step 1-Create an empty XHR object
+        // Step 1 - Create an empty XHR object
         let XHR = new XMLHttpRequest();
-        //step 2 Compose the Request
+
+        // Step 2 - Compose the Request
         XHR.open(method, url);
-        //step3 send request to the server
+
+        // Step 3 - Send the Request to the server
         XHR.send();
-        //step4 Setup an event listener
-        XHR.addEventListener("readystatechange", function()
-        {
-                if ((XHR.status == 200) && (XHR.readyState == 4))
-                {
-                    let contactDataSource = JSON.parse(XHR.responseText);
-                    console.log(contactDataSource.ContactList[0]);
-                }
+
+        // Step 4 - Setup an event listener
+        XHR.addEventListener("readystatechange", function(){
+
+            if((XHR.status == 200) && (XHR.readyState == 4))
+            {
+                callback(XHR.responseText);
+            }
+
         });
     }
-    //First method of using functions.
+
+    // First method of using functions
     function Start()
     {
         console.log("App Started!");
 
-        //XHRRequest("GET", "./Data/contacts.json");
+        // LoadData("GET", "./Data/contacts.json", function(XHR){
+        //     console.log(XHR);
+        // });
 
         $.getJSON("./Data/contacts.json", function(DataSource){
             console.log(DataSource.ContactList[0]);
         });
     }
+
+
     window.addEventListener("load", Start);
 
-
 })();
-
 
 
 
