@@ -1,9 +1,9 @@
 {
-  "name": "comp2112-f2022-week2",
+  "name": "comp2112-f2022-week5",
   "version": "1.0.0",
   "description": "Demo app for week2",
   "main": "index.js",
-  "repository": "https://github.com/ElenaSmirnova83/COMP2112-Week2-lesson.git",
+  "repository": "https://github.com/ElenaSmirnova83/COMP2112-Week5-lesson.git",
   "author": "Elena Smirnova <natanelenasmirnovy@gmail.com>",
   "license": "MIT",
   "dependencies": {
