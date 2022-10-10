@@ -40,27 +40,55 @@
         return ContactArray;
     }
 
-    // First method of using functions
-    function Start()
+    function LoadHeader(): void
     {
-        console.log("App Started!");
-        $.getJSON("./Data/contacts.json", function(DataSource){
-            // Get your data from the DataSource
-            let contactList:any[] = DataSource.ContactList;
+        $.get("./Views/components/header.html", function(html_data)
+        {
+            $("header").html(html_data);
             
-            SaveContactListData(contactList);
 
-            let ContactArray = LoadContactListData();
-
-            for (const contact of ContactArray) 
+           switch(document.title)
             {
-                console.log(contact.toString());
+                case "Home":
+                    $("#homePage").addClass("active");
+                    break;
+                case "About Us":
+                    $("#aboutPage").addClass("active");
+                    break;
+                case "Our Projects":    
+                    $("#projectsPage").addClass("active");
+                    break;  
+                case "Our Services":   
+                    $("#servicesPage").addClass("active");
+                    break; 
+                case "Contact Us":   
+                    $("#contactPage").addClass("active");
+                    break;       
+
             }
 
         });
-       
     }
 
+    function LoadFooter(): void
+    {
+        $.get("./Views/components/footer.html", function(html_data)
+        {
+            document.getElementsByTagName("footer")[0].innerHTML = html_data;
+        });
+    }
+
+    // First method of using functions
+    function Start()
+    {
+        
+                console.log("App Started!");
+
+                LoadHeader();
+                LoadFooter();
+    }
+
+    
     window.addEventListener("load", Start);
 })();
 
