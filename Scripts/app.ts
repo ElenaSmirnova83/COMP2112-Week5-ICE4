@@ -117,6 +117,8 @@
         // Change URL
         history.pushState({}, "", "/Home");
 
+    
+
         LoadContent();
 
         LoadHeader();
